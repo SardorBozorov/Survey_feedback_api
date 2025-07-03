@@ -46,15 +46,23 @@ question_sets = {
 
 # Prompt templates per language
 prompts = {
-    "uz": """Siz respondentlarning so‘rov javoblari asosida foydalanuvchiga qisqa, motivatsion, samimiy va foydali tavsiya beradigan sun’iy intellektsiz. Quyidagi javoblarga qarab 2-3 gaplik xulosa yozing. Salomlashish yoki rasmiy gaplar bo‘lmasin. Yozgan tavsiyangiz respondentning darajasiga mos bo‘lsin. Oxirida buni qo‘shing: 
-"Shuning bilan birgalikda hulosalar ohirida bilimlaringizni rivojlantirish va vaqtingizni tejash uchun  Coursera kurslari sizning IT ko‘nikmalaringizga mos ravishda tavsiya etiladi."\n\n""",
+    "uz": """Siz sun’iy intellektsiz va quyidagi respondent javoblari asosida foydalanuvchiga qisqa, samimiy, motivatsion va foydali tavsiya yozasiz. Tavsiya 4–5 gapdan oshmasin. Rasmiystik, salomlashuv, va keraksiz so‘zlardan qoching. Tavsiya respondentning daraja va ehtiyojlariga mos bo‘lsin. IT sohasining zamonaviy dunyodagi ahamiyati va imkoniyatlari haqida qisqacha ijobiy fikr kiriting — masalan, IT bilimlari bilan yaxshi ish topish, masofadan ishlash yoki mustaqil daromad topish mumkinligini. Har doim quyidagi jumla bilan boshlang: 
+"So‘rovda qatnashganingiz uchun rahmat, bu o‘z ustingizda ishlayotganingizni ko‘rsatadi." 
+Oxirida quyidagini qo‘shing:
+"Shuning bilan birgalikda hulosalar ohirida bilimlaringizni rivojlantirish va vaqtingizni tejash uchun Coursera kurslari sizning IT ko‘nikmalaringizga mos ravishda tavsiya etiladi."\n\n""",
 
-    "ru": """Вы — ИИ, анализирующий ответы на IT-опрос. Напишите короткую, полезную и мотивирующую рекомендацию во 2-м лице ("вы") на основе ответов. Избегайте приветствий и формальностей. В конце добавьте: 
-"В завершение, для улучшения ваших цифровых навыков рекомендуются курсы Coursera."\n\n""",
+    "ru": """Вы — ИИ, анализирующий ответы на IT-опрос. На основе ответов напишите короткую (4–5 предложений), дружелюбную, мотивирующую и полезную рекомендацию во 2-м лице ("вы"). Избегайте приветствий, формальностей и лишней воды. Сообщение должно соответствовать уровню и интересам респондента. Добавьте позитивную мысль о важности ИТ — например, что знания в этой области помогают найти хорошую работу, работать удалённо или зарабатывать самостоятельно. Всегда начинайте с фразы:
+"Спасибо за участие в опросе — это говорит о вашем стремлении развиваться." 
+В конце добавьте:
+"В завершение, для улучшения ваших цифровых навыков рекомендуются курсы Coursera, подобранные под ваш уровень."\n\n""",
 
-    "en": """You are an AI assistant analyzing IT survey responses. Based on the answers, write a short, friendly, motivating message using "you". Avoid greetings or formal introductions. End with: 
-"To conclude, Coursera courses  are recommended to match your digital skill level."\n\n"""
+    "en": """You are an AI assistant analyzing IT survey responses. Based on the answers, write a short (4–5 sentence), friendly, motivating, and practical recommendation using "you". Avoid greetings, formality, or filler. Tailor your message to the respondent’s skill level and interests. Include a positive note on the importance of IT — such as how IT skills help people get better jobs, work remotely, or earn independently. Always begin with the sentence: 
+"Thanks for taking part in the survey — it shows you're committed to learning." 
+End with:
+"To conclude, Coursera courses are recommended to match your digital skill level and help you grow efficiently."\n\n"""
 }
+
+
 
 # Input schema
 class FeedbackRequest(BaseModel):
