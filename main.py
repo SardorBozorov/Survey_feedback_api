@@ -1,25 +1,24 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import google.generativeai as genai
 
 app = FastAPI()
 
+# ✅ Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # You can restrict this in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Setup Gemini
-genai.configure(api_key="AIzaSyAnmeaCHexhdi_GE-70ZzXQiUZ_xMc5HlY")  # Replace with secure method in production
+genai.configure(api_key="AIzaSyAnmeaCHexhdi_GE-70ZzXQiUZ_xMc5HlY")  # Use secrets in production
 model = genai.GenerativeModel("models/gemini-1.5-flash")
 
-# Default fallback feedback
-# DEFAULT_FEEDBACK = (
-#     "Siz bizning so‘rovnomada qatnashdingiz — bu esa siz IT sohasiga befarq emassiz degani. "
-#     "IT bugungi kunda eng tez rivojlanayotgan va hayotning deyarli barcha sohalarini qamrab olayotgan yo‘nalishlardan biridir. "
-#     "Siz qanday darajada bo‘lishingizdan qat’i nazar, har bir inson o‘z sharoitiga mos ravishda bilim olishi mumkin. "
-#     "Masofaviy o‘quv platformalari, bepul darslar va amaliy kurslar orqali siz ham o‘z imkoniyatlaringizni kengaytirishingiz mumkin. "
-#     "Shuning bilan birgalikda hulosalar ohirida bilimlaringizni rivojlantirish va vaqtingizni tejash uchun IT Ta’lim Uyushmasi tomonidan taqdim etilayotgan "
-#     "Coursera kurslari sizning IT ko‘nikmalaringizga mos ravishda tavsiya etiladi."
-# )
-
 # Questions in 3 languages
-
 question_sets = {
     "uz": [
         "1. IT sohasida ko‘proq bilim olishga qiziqasizmi?", 
@@ -62,8 +61,6 @@ End with:
 "To conclude, Coursera courses are recommended to match your digital skill level and help you grow efficiently."\n\n"""
 }
 
-
-
 # Input schema
 class FeedbackRequest(BaseModel):
     language: str  # 'uz', 'ru', or 'en'
@@ -94,5 +91,6 @@ async def generate_feedback(input: FeedbackRequest):
         }
     except Exception:
         return {
-             False
+            "language": lang,
+            "feedback": "Uzr, xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko‘ring."
         }
